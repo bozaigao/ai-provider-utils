@@ -327,7 +327,6 @@ var postToApi = async ({
       }
       throw errorInformation.value;
     }
-    console.log("\u{1F601}\u{1F601}->", response);
     try {
       return await successfulResponseHandler({
         response,
