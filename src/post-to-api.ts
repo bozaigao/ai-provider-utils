@@ -99,7 +99,7 @@ export const postToApi = async <T>({
 
       throw errorInformation.value;
     }
-    console.log('😁😁->', response);
+
     try {
       return await successfulResponseHandler({
         response,
