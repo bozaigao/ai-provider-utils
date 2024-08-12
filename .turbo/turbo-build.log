@@ -1,0 +1,38 @@
+
+> @ai-sdk/provider-utils@1.0.9 build /Users/yanbo.he/Desktop/AI/ai/packages/provider-utils
+> tsup
+
+[34mCLI[39m Building entry: src/index.ts
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v8.2.4
+[34mCLI[39m Using tsup config: /Users/yanbo.he/Desktop/AI/ai/packages/provider-utils/tsup.config.ts
+[34mCLI[39m Building entry: src/test/index.ts
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v8.2.4
+[34mCLI[39m Using tsup config: /Users/yanbo.he/Desktop/AI/ai/packages/provider-utils/tsup.config.ts
+[34mCLI[39m Target: es2018
+[34mCJS[39m Build start
+[34mESM[39m Build start
+[34mCLI[39m Target: es2018
+[34mCJS[39m Build start
+[34mESM[39m Build start
+[32mESM[39m [1mdist/index.mjs     [22m[32m14.32 KB[39m
+[32mESM[39m [1mdist/index.mjs.map [22m[32m31.34 KB[39m
+[32mESM[39m ⚡️ Build success in 22ms
+[32mCJS[39m [1mdist/index.js     [22m[32m17.59 KB[39m
+[32mCJS[39m [1mdist/index.js.map [22m[32m32.09 KB[39m
+[32mCJS[39m ⚡️ Build success in 22ms
+[32mESM[39m [1mtest/dist/index.mjs     [22m[32m174.45 KB[39m
+[32mESM[39m [1mtest/dist/index.mjs.map [22m[32m378.09 KB[39m
+[32mESM[39m ⚡️ Build success in 106ms
+[32mCJS[39m [1mtest/dist/index.js     [22m[32m176.65 KB[39m
+[32mCJS[39m [1mtest/dist/index.js.map [22m[32m378.56 KB[39m
+[32mCJS[39m ⚡️ Build success in 106ms
+[34mDTS[39m Build start
+[34mDTS[39m Build start
+[32mDTS[39m ⚡️ Build success in 697ms
+[32mDTS[39m [1mtest/dist/index.d.ts  [22m[32m3.12 KB[39m
+[32mDTS[39m [1mtest/dist/index.d.mts [22m[32m3.12 KB[39m
+[32mDTS[39m ⚡️ Build success in 733ms
+[32mDTS[39m [1mdist/index.d.ts  [22m[32m8.53 KB[39m
+[32mDTS[39m [1mdist/index.d.mts [22m[32m8.53 KB[39m
