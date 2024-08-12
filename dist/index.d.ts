@@ -148,6 +148,7 @@ declare const createJsonErrorResponseHandler: <T>({ errorSchema, errorToMessage,
     errorToMessage: (error: T) => string;
     isRetryable?: ((response: Response, error?: T | undefined) => boolean) | undefined;
 }) => ResponseHandler<APICallError>;
+declare const createEventSourceResponseHandlerForProgress: <T>(chunkSchema: ZodSchema<T, zod.ZodTypeDef, T>) => ResponseHandler<ReadableStream<ParseResult<T>>>;
 declare const createEventSourceResponseHandler: <T>(chunkSchema: ZodSchema<T, zod.ZodTypeDef, T>) => ResponseHandler<ReadableStream<ParseResult<T>>>;
 declare const createJsonStreamResponseHandler: <T>(chunkSchema: ZodSchema<T, zod.ZodTypeDef, T>) => ResponseHandler<ReadableStream<ParseResult<T>>>;
 declare const createJsonResponseHandler: <T>(responseSchema: ZodSchema<T, zod.ZodTypeDef, T>) => ResponseHandler<T>;
@@ -218,4 +219,4 @@ declare function safeValidateTypes<T>({ value, schema: inputSchema, }: {
 
 declare function withoutTrailingSlash(url: string | undefined): string | undefined;
 
-export { type ParseResult, type ResponseHandler, type Validator, combineHeaders, convertAsyncGeneratorToReadableStream, convertBase64ToUint8Array, convertUint8ArrayToBase64, createEventSourceResponseHandler, createJsonErrorResponseHandler, createJsonResponseHandler, createJsonStreamResponseHandler, extractResponseHeaders, generateId, getErrorMessage, isAbortError, isParsableJson, isParseableJson, isValidator, loadApiKey, loadSetting, parseJSON, postJsonToApi, postToApi, safeParseJSON, safeValidateTypes, validateTypes, validator, validatorSymbol, withoutTrailingSlash, zodValidator };
+export { type ParseResult, type ResponseHandler, type Validator, combineHeaders, convertAsyncGeneratorToReadableStream, convertBase64ToUint8Array, convertUint8ArrayToBase64, createEventSourceResponseHandler, createEventSourceResponseHandlerForProgress, createJsonErrorResponseHandler, createJsonResponseHandler, createJsonStreamResponseHandler, extractResponseHeaders, generateId, getErrorMessage, isAbortError, isParsableJson, isParseableJson, isValidator, loadApiKey, loadSetting, parseJSON, postJsonToApi, postToApi, safeParseJSON, safeValidateTypes, validateTypes, validator, validatorSymbol, withoutTrailingSlash, zodValidator };

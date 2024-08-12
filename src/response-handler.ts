@@ -82,6 +82,23 @@ export const createJsonErrorResponseHandler =
     }
   };
 
+export const createEventSourceResponseHandlerForProgress =
+  <T>(
+    chunkSchema: ZodSchema<T>,
+  ): ResponseHandler<ReadableStream<ParseResult<T>>> =>
+  async ({ response }: { response: any }) => {
+    const responseHeaders = extractResponseHeaders(response);
+
+    if (response.body == null) {
+      throw new EmptyResponseBodyError({});
+    }
+
+    return {
+      responseHeaders,
+      value: response.body.pipeThrough(new TextDecoderStream()),
+    };
+  };
+
 export const createEventSourceResponseHandler =
   <T>(
     chunkSchema: ZodSchema<T>,
@@ -92,8 +109,6 @@ export const createEventSourceResponseHandler =
     if (response.body == null) {
       throw new EmptyResponseBodyError({});
     }
-
-    console.log('😁body', response.body);
 
     return {
       responseHeaders,

@@ -35,6 +35,7 @@ __export(src_exports, {
   convertBase64ToUint8Array: () => convertBase64ToUint8Array,
   convertUint8ArrayToBase64: () => convertUint8ArrayToBase64,
   createEventSourceResponseHandler: () => createEventSourceResponseHandler,
+  createEventSourceResponseHandlerForProgress: () => createEventSourceResponseHandlerForProgress,
   createJsonErrorResponseHandler: () => createJsonErrorResponseHandler,
   createJsonResponseHandler: () => createJsonResponseHandler,
   createJsonStreamResponseHandler: () => createJsonStreamResponseHandler,
@@ -489,12 +490,21 @@ var createJsonErrorResponseHandler = ({
     };
   }
 };
+var createEventSourceResponseHandlerForProgress = (chunkSchema) => async ({ response }) => {
+  const responseHeaders = extractResponseHeaders(response);
+  if (response.body == null) {
+    throw new import_provider6.EmptyResponseBodyError({});
+  }
+  return {
+    responseHeaders,
+    value: response.body.pipeThrough(new TextDecoderStream())
+  };
+};
 var createEventSourceResponseHandler = (chunkSchema) => async ({ response }) => {
   const responseHeaders = extractResponseHeaders(response);
   if (response.body == null) {
     throw new import_provider6.EmptyResponseBodyError({});
   }
-  console.log("\u{1F601}body", response.body);
   return {
     responseHeaders,
     value: response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new import_stream.EventSourceParserStream()).pipeThrough(
@@ -590,6 +600,7 @@ function withoutTrailingSlash(url) {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,
   createEventSourceResponseHandler,
+  createEventSourceResponseHandlerForProgress,
   createJsonErrorResponseHandler,
   createJsonResponseHandler,
   createJsonStreamResponseHandler,

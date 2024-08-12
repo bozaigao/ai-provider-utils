@@ -429,12 +429,21 @@ var createJsonErrorResponseHandler = ({
     };
   }
 };
+var createEventSourceResponseHandlerForProgress = (chunkSchema) => async ({ response }) => {
+  const responseHeaders = extractResponseHeaders(response);
+  if (response.body == null) {
+    throw new EmptyResponseBodyError({});
+  }
+  return {
+    responseHeaders,
+    value: response.body.pipeThrough(new TextDecoderStream())
+  };
+};
 var createEventSourceResponseHandler = (chunkSchema) => async ({ response }) => {
   const responseHeaders = extractResponseHeaders(response);
   if (response.body == null) {
     throw new EmptyResponseBodyError({});
   }
-  console.log("\u{1F601}body", response.body);
   return {
     responseHeaders,
     value: response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new EventSourceParserStream()).pipeThrough(
@@ -529,6 +538,7 @@ export {
   convertBase64ToUint8Array,
   convertUint8ArrayToBase64,
   createEventSourceResponseHandler,
+  createEventSourceResponseHandlerForProgress,
   createJsonErrorResponseHandler,
   createJsonResponseHandler,
   createJsonStreamResponseHandler,
